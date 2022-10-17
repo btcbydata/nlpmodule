@@ -1,8 +1,9 @@
 !pip install mxnet
 !pip install gluonnlp pandas tqdm
 !pip install sentencepiece
-!pip install transformers
+
 !pip install torch
+!pip install -q transformers pytorch_lightning emoji soynlp
 
 #get KOBERT from github
 !pip install 'git+https://github.com/SKTBrain/KoBERT.git#egg=kobert_tokenizer&subdirectory=kobert_hf'
@@ -16,16 +17,15 @@ import gluonnlp as nlp #get gluon interface
 import numpy as np #get numpy
 from tqdm import tqdm, tqdm_notebook #get progress bar
 
-from kobert_tokenizer import KoBERTTokenizer #get KOBERT tokenizer
-from transformers import BertModel #load kobert model
+from transformers import AutoTokenizer, AutoModelWithLMHead #get KcBERT tokenizer, MODEL
 
 from transformers import AdamW #load optimizer
 from transformers.optimization import get_cosine_schedule_with_warmup #scheduler/set epoch and training step
 
 device = torch.device("cuda:0") #set colab GPU
 
-tokenizer = KoBERTTokenizer.from_pretrained('skt/kobert-base-v1') #tokernizer obj
-bertmodel = BertModel.from_pretrained('skt/kobert-base-v1', return_dict=False) #bertmodel obj
+tokenizer = AutoTokenizer.from_pretrained("beomi/kcbert-base") #tokenizer obj
+model = AutoModelWithLMHead.from_pretrained("beomi/kcbert-base") #model obj
 vocab = nlp.vocab.BERTVocab.from_sentencepiece(tokenizer.vocab_file, padding_token='[PAD]') #바이너리 형태의 Ko-BERT vocabulary를 huggingface 모듈이 읽을 수 있는 text 형태의 vocabulary로 추출
 
 #get naver movie txt
