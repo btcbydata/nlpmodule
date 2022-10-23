@@ -1,13 +1,16 @@
 import pandas as pd
 import os
 
+filename = "202209"
 ## files = os.listdir('btcbd_nlp\\bitcoingallery_csv')
-data = pd.read_csv("btcbd_nlp\\bitcoingallery_csv\\201712.csv")
+data = pd.read_csv("btcbd_nlp\\bitcoingallery_csv\\"+filename+".csv")
 
 
 data = data.drop(['date'],axis=1)
 df = data[data['title'].str.contains(' 비트|플로우|넴|이더|이클|플로우|넴|탑샷|카르|앵커|아르고|메탈|에드|오브스|캐스퍼|마로|루나|펀디|엠블|엔진|무비|픽셀| 마나|트론|헤데|크로미아|방카|보바|이더|테더|리플|도지|솔라나|체인링크|트론|아발|유니|이클|위믹스|팬케이크|빗골| 라코|이오스|비캐|빗캐|스텔라|슨트|카이버|스텔라|클레|크레딧|헤데라')]
-df.to_csv("201712_result.csv", encoding='utf-8-sig')
+df.to_csv(filename+"_result.csv", encoding='utf-8-sig')
+
+print(filename + " completed")
 
 
 """
