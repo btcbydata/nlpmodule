@@ -1,9 +1,34 @@
-a2021 = [21582, 49330, 75273, 101009, 82451, 28781, 16463, 32416, 30993, 25150, 31287, 26034]
-a2022 = [18708, 12324, 10549, 9734, 16679, 11166, 7302, 6004, 2534]
-milesteone=101009
+'''
+import re
 
-div01=[round(a2021[i]/milesteone,3) for i in range(len(a2021))]
-div02=[round(a2022[j]/milesteone,3) for j in range(len(a2022))]
+filename=str(202210)
 
-print(div01)
-print(div02)
+f=open('btcbd_nlp\\dataoutput\\'+filename+'.txt',mode='r',encoding='utf-8')
+lines = f.readlines()
+cnt=0
+negative=0
+positive=0
+
+for line in lines:
+    templist=re.findall(r"[-+]?(?:\d*\.\d+|\d+)",line)
+    if not templist:
+        break #마지막 줄 처리
+    cnt+=1
+    negative+=float(templist[0])
+    positive+=float(templist[1])
+
+print("for result : %f %f"%(negative/cnt,positive/cnt))
+print("valid : ",cnt)
+'''
+import os
+import pandas as pd
+
+files = os.listdir("빗갤원본")
+files
+
+
+for i in files:
+    data = pd.read_csv("빗갤원본\\"+i)
+    print(i)
+    print(len(data.index))
+
