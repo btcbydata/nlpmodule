@@ -1,9 +1,9 @@
-'''
+
 import re
 
-filename=str(202210)
+#filename=str(202210_1)
 
-f=open('btcbd_nlp\\dataoutput\\'+filename+'.txt',mode='r',encoding='utf-8')
+f=open('월별코인별데이터\\분석결과\\202208_1.txt',mode='r',encoding='utf-8')
 lines = f.readlines()
 cnt=0
 negative=0
@@ -17,8 +17,9 @@ for line in lines:
     negative+=float(templist[0])
     positive+=float(templist[1])
 
-print("for result : %f %f"%(negative/cnt,positive/cnt))
+print("비트 : %f %f"%(negative/cnt,positive/cnt))
 print("valid : ",cnt)
+
 '''
 import os
 import pandas as pd
@@ -32,3 +33,4 @@ for i in files:
     print(i)
     print(len(data.index))
 
+'''

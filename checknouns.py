@@ -2,7 +2,7 @@ from konlpy.tag import Okt
 from collections import Counter
 import pandas as pd
 
-f=open('C:\\Users\\rhyth\Desktop\\Senior_Project\\btcbd_nlp\\bitcoingallery_csv\\202209.csv','r',encoding='utf-8')
+f=open('빗갤원본\\202101.csv','r',encoding='utf-8')
 title=f.read()
 
 okt = Okt()
